@@ -1,14 +1,17 @@
 package commands
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
-func handlerLogin(s *state, cmd command) error {
+func HandlerLogin(s *state, cmd command) error {
 	if len(cmd.args) == 0 {
-		return fmt.Errorf("%s command argument cannot be empty", cmd.name)
+		return errors.New("a username is required")
 	}
 
 	username := cmd.args[0]
-	s.config.CurrentUserName = username
-	fmt.Printf("Current username has been set to %s!", username)
+	s.config.SetUser(username)
+	fmt.Printf("Current username has been set to %s!\n", username)
 	return nil
 }
