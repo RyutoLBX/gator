@@ -60,3 +60,7 @@ func (c *Config) SetUser(username string) error {
 	}
 	return nil
 }
+
+func (c Config) GetDatabaseURL() string {
+	return c.DBUrl
+}

@@ -1,13 +1,17 @@
 package commands
 
-import "gator/internal/config"
+import (
+	"gator/internal/config"
+	"gator/internal/database"
+)
 
 type state struct {
 	config *config.Config
+	db     *database.Queries
 }
 
-func NewState(c config.Config) state {
-	return state{config: &c}
+func NewState(c *config.Config, db *database.Queries) state {
+	return state{config: c, db: db}
 }
 
 type command struct {
